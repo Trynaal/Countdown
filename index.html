@@ -72,7 +72,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
-    var targetDate = new Date("2024-01-01T00:00:00Z").getTime();
+    var targetDate = new Date("2023-12-31T23:00:00Z").getTime();
     var countdownInterval = setInterval(function() {
         var currentDate = new Date().getTime();
         var timeDifference = targetDate - currentDate;
@@ -89,7 +89,7 @@
 
         if (timeDifference < 0) {
             clearInterval(countdownInterval);
-            document.getElementById("countdownMessage").innerHTML = "Le compte à rebours est terminé!";
+            document.getElementById("countdownMessage").innerHTML = "Bonne année !";
         }
     }, 1000);
 
