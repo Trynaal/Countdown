@@ -42,14 +42,11 @@
             color: #007bff;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .countdown-digit {
-            animation: pulse 1s infinite;
+        /* Copyright */
+        #copyright {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #6c757d;
         }
     </style>
 </head>
@@ -68,6 +65,7 @@
         <div class="countdown-label">Secondes</div>
     </div>
     <div id="countdownMessage" class="countdown-message"></div>
+    <div id="copyright"></div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -98,6 +96,10 @@
     function formatTime(time) {
         return time < 10 ? "0" + time : time;
     }
+
+    // Copyright
+    var currentYear = new Date().getFullYear();
+    document.getElementById("copyright").innerHTML = "&copy; " + (currentYear >= 2023 ? "2023-" + currentYear : "2023") + " Trynaal";
 </script>
 
 </body>
