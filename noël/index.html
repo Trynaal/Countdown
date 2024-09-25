@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à Rebours</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .countdown-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .countdown-digit {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0 5px;
+            padding: 10px;
+            background-color: #007bff;
+            border-radius: 5px;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .countdown-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #007bff;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .countdown-message {
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #007bff;
+        }
+
+        /* Copyright */
+        #copyright {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container countdown-container">
+    <h1 class="text-center">Compte à Rebours</h1>
+    <div id="countdown" class="mt-4">
+        <div class="countdown-digit" id="days">00</div>
+        <div class="countdown-label">Jours</div>
+        <div class="countdown-digit" id="hours">00</div>
+        <div class="countdown-label">Heures</div>
+        <div class="countdown-digit" id="minutes">00</div>
+        <div class="countdown-label">Minutes</div>
+        <div class="countdown-digit" id="seconds">00</div>
+        <div class="countdown-label">Secondes</div>
+    </div>
+    <div id="countdownMessage" class="countdown-message"></div>
+    <div id="copyright"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    var targetDate = new Date("2024-12-24T23:00:00Z").getTime();
+    var countdownInterval = setInterval(function() {
+        var currentDate = new Date().getTime();
+        var timeDifference = targetDate - currentDate;
+
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = formatTime(days);
+        document.getElementById("hours").innerHTML = formatTime(hours);
+        document.getElementById("minutes").innerHTML = formatTime(minutes);
+        document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+        if (timeDifference < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdownMessage").innerHTML = "Joyeux Noël !";
+        }
+    }, 1000);
+
+    function formatTime(time) {
+        return time < 10 ? "0" + time : time;
+    }
+
+    // Copyright
+    var currentYear = new Date().getFullYear();
+    document.getElementById("copyright").innerHTML = "&copy; " + (currentYear >= 2023 ? "2023-" + currentYear : "2023") + " Trynaal";
+</script>
+
+</body>
+</html>
