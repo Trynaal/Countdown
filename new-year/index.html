@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,6 @@
             color: #007bff;
         }
 
-        /* Copyright */
         #copyright {
             margin-top: 50px;
             font-size: 0.8rem;
@@ -68,14 +67,20 @@
     <div id="copyright"></div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
-    var targetDate = new Date("2024-12-31T23:00:00Z").getTime();
+    var now = new Date();
+    var targetDate = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0); // Janvier = 0
+
     var countdownInterval = setInterval(function() {
-        var currentDate = new Date().getTime();
+        var currentDate = new Date();
         var timeDifference = targetDate - currentDate;
+
+        if (timeDifference < 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("countdown").style.display = "none";
+            document.getElementById("countdownMessage").innerHTML = "Bonne année !";
+            return;
+        }
 
         var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -86,20 +91,16 @@
         document.getElementById("hours").innerHTML = formatTime(hours);
         document.getElementById("minutes").innerHTML = formatTime(minutes);
         document.getElementById("seconds").innerHTML = formatTime(seconds);
-
-        if (timeDifference < 0) {
-            clearInterval(countdownInterval);
-            document.getElementById("countdownMessage").innerHTML = "Bonne année !";
-        }
     }, 1000);
 
     function formatTime(time) {
         return time < 10 ? "0" + time : time;
     }
 
-    // Copyright
+    // Copyright dynamique
     var currentYear = new Date().getFullYear();
-    document.getElementById("copyright").innerHTML = "&copy; " + (currentYear >= 2023 ? "2023-" + currentYear : "2023") + " Trynaal";
+    document.getElementById("copyright").innerHTML =
+        "&copy; " + (currentYear >= 2023 ? "2023-" + currentYear : "2023") + " Trynaal";
 </script>
 
 </body>
